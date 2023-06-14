@@ -7,6 +7,21 @@ const users = [
 	}
 ];
 
+type Data = {
+    firstNames : string[];
+    lastNames : string[]; 
+    ssns : string[];
+    emails : string[];
+    addresses: string[];
+    cities : string[];
+    states : string[];
+    zipcodes : string[];
+}
+
+type Entry = {
+    ctoList: string[]
+}
+
 export const load: PageServerLoad = async () => {
 	return {
 		users
@@ -16,41 +31,33 @@ export const load: PageServerLoad = async () => {
 export const actions: Actions = {
 	default: async ({ request }) => {
 		const formData = await request.formData();
-		const firstName = formData.get('first-name').split(',');
-		const lastName = formData.get('last-name').split(',');
-		const ssn = formData.get('ssn').split(',');
-		const email = formData.get('email').split(',');
-		const address = formData.get('address').split(',');
-		const city = formData.get('city').split(',');
-		const state = formData.get('state').split(',');
-		const zip = formData.get('zip').split(',');
+        // ASSUME form data is passed if a req is made (frontend can handle validation)
 
-		const user = {
-			firstName,
-			lastName,
-			ssn,
-			email,
-			address,
-			city,
-			state,
-			zip
-		};
-
-		users.push(user);
-		console.log(users);
-
-		// users.forEach((x) => {
-		// 	console.log(x.firstName);
-		// });
-
-		const newArray = users.map((x) => {
-			return x.firstName + x.lastName;
-		});
-
-		console.log(newArray);
+        const mappedFromFormData : Data = {
+            firstNames: String(formData.get('first-name')).split(','),
+            lastNames: String(formData.get('last-name')).split(','),
+            ssns: String(formData.get('ssn')).split(','),
+            emails: String(formData.get('email')).split(','),
+            addresses: String(formData.get('address')).split(','),
+            cities: String(formData.get('city')).split(','),
+            states: String(formData.get('state')).split(','),
+            zipcodes: String(formData.get('zip')).split(','),
+        }
+        // Loop thru data and construct cto strings
+        // Map to Entry
 
 		return {
-			success: true
+			success: true,
+            // entry,
 		};
 	}
 };
+
+// const firstNameList = formData.get('first-name').split(',');
+// const lastNameList = formData.get('last-name').split(',');
+// const ssnList = formData.get('ssn').split(',');
+// const emailList = formData.get('email').split(',');
+// const addressList = formData.get('address').split(',');
+// const cityList = formData.get('city').split(',');
+// const stateList = formData.get('state').split(',');
+// const zipList = formData.get('zip').split(',');
