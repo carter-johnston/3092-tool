@@ -46,6 +46,14 @@ export const actions: Actions = {
         // Loop thru data and construct cto strings
         // Map to Entry
 
+        let newList : string[] = [];
+
+        for(let i = 0; i < mappedFromFormData.firstNames.length ; i++) {
+            newList.push(`${mappedFromFormData.firstNames[i]},${mappedFromFormData.lastNames[i]},${mappedFromFormData.ssns[i]},`);
+        }
+
+        console.log(newList);
+
 		return {
 			success: true,
             // entry,
