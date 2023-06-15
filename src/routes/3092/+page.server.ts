@@ -33,7 +33,7 @@ export const actions: Actions = {
 		const formData = await request.formData();
         // ASSUME form data is passed if a req is made (frontend can handle validation)
 
-        const mappedFromFormData : Data = {
+        const data : Data = {
             firstNames: String(formData.get('first-name')).split(','),
             lastNames: String(formData.get('last-name')).split(','),
             ssns: String(formData.get('ssn')).split(','),
@@ -43,29 +43,27 @@ export const actions: Actions = {
             states: String(formData.get('state')).split(','),
             zipcodes: String(formData.get('zip')).split(','),
         }
-        // Loop thru data and construct cto strings
-        // Map to Entry
 
         let newList : string[] = [];
 
-        for(let i = 0; i < mappedFromFormData.firstNames.length ; i++) {
-            newList.push(`${mappedFromFormData.firstNames[i]},${mappedFromFormData.lastNames[i]},${mappedFromFormData.ssns[i]},`);
+        for(let i = 0; i < data.firstNames.length ; i++) {
+            newList.push(
+                [
+                    data.firstNames[i],
+                    data.lastNames[i],
+                    data.ssns[i],
+                    data.emails[i],
+                    data.addresses[i],
+                    data.cities[i],
+                    data.states[i],
+                    data.zipcodes[i],
+                ].join(",")
+            );
         }
-
-        console.log(newList);
 
 		return {
 			success: true,
-            // entry,
+            ctoData: newList,
 		};
 	}
 };
-
-// const firstNameList = formData.get('first-name').split(',');
-// const lastNameList = formData.get('last-name').split(',');
-// const ssnList = formData.get('ssn').split(',');
-// const emailList = formData.get('email').split(',');
-// const addressList = formData.get('address').split(',');
-// const cityList = formData.get('city').split(',');
-// const stateList = formData.get('state').split(',');
-// const zipList = formData.get('zip').split(',');
