@@ -2,11 +2,11 @@
 	import { NavLi, NavUl, Navbar } from 'flowbite-svelte';
 	import '../app.css';
 	import { page } from '$app/stores';
-	import { each } from 'svelte/internal';
 
 	const navigation = [
 		{ label: 'Home', href: '/' },
-		{ label: '3092', href: '/3092' }
+		{ label: '3092', href: '/3092' },
+		{ label: '3092 (carter)', href: '/3092idea' }
 	];
 </script>
 
