@@ -1,10 +1,18 @@
 <script lang="ts">
 	import type { PageData } from './$types';
+	import type { ActionData } from './$types';
 
 	export let data: PageData;
+	export let form: ActionData;
 </script>
 
 <h1 class="text-3xl text-center mt-10">3092</h1>
+
+{#if form?.success}
+	{#each form.ctoData as ctoString}
+		<p>{ctoString.toString()}</p>
+	{/each}
+{/if}
 
 <form method="POST">
 	<div class="space-y-12 sm:space-y-16">
