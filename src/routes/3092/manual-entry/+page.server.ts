@@ -12,9 +12,16 @@ type Data = {
 	certPins: string[];
 	firstNames: string[];
 	lastNames: string[];
+	addressLine1: string[];
+	addressLine2: string[];
+	addressLine3: string[];
+	countries: string[];
+	dobs: string[];
+	homePhones: string[];
+	officePhones: string[];
+	mobilePhones: string[];
 	ssns: string[];
 	emails: string[];
-	addresses: string[];
 	cities: string[];
 	states: string[];
 	zipcodes: string[];
