@@ -6,8 +6,6 @@
 	export let form: ActionData;
 </script>
 
-<h1 class="text-3xl text-center mt-10">3092</h1>
-
 {#if form?.success}
 	<h5 class="mt-4">CTO String(s):</h5>
 	{#each form.ctoData as ctoString}
