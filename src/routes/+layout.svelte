@@ -1,12 +1,10 @@
 <script>
-	import { NavLi, NavUl, Navbar } from 'flowbite-svelte';
 	import '../app.css';
 	import { page } from '$app/stores';
 
 	const navigation = [
 		{ label: 'Home', href: '/' },
-		{ label: '3092', href: '/3092' },
-		{ label: '3092 (carter)', href: '/3092idea' }
+		{ label: '3092', href: '/3092' }
 	];
 </script>
 
@@ -21,7 +19,7 @@
 				<!-- Mobile menu button -->
 				<button
 					type="button"
-					class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+					class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-700"
 					aria-controls="mobile-menu"
 					aria-expanded="false"
 				>
@@ -71,7 +69,7 @@
 						<a
 							href={nav.href}
 							class:active={$page.url.pathname === nav.href}
-							class="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900 hover:border-indigo-500 hover:text-gray-700 hover:border-b-2 active:border-indigo-900"
+							class="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900 hover:border-blue-500 hover:text-gray-700 hover:border-b-2 active:border-blue-900"
 							>{nav.label}</a
 						>
 					{/each}
