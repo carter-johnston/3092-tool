@@ -27,7 +27,7 @@
 		</thead>
 		<tbody>
 			{#each entries as entry, index}
-				<EntryRow {index} bind:entries={...entry} />
+				<EntryRow {index} bind:data={entry} />
 			{/each}
 		</tbody>
 	</table>

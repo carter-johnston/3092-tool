@@ -1,15 +1,17 @@
 <script lang="ts">
 	export let index: number;
 
-	export let firstName: string = '';
-	export let lastName: string = '';
-	export let ssn: string = '';
-	export let email: string = '';
-	export let country: string = '';
-	export let address: string = '';
-	export let city: string = '';
-	export let state: string = '';
-	export let zipcode: number = 0;
+	export let data: {
+		firstName: string;
+		lastName: string;
+		ssn: string;
+		email: string;
+		country: string;
+		address: string;
+		city: string;
+		state: string;
+		zipcode: number;
+	};
 
 	let ssnLeft = 0;
 	let ssnMid = 0;
@@ -32,8 +34,8 @@
 
 <tr class="">
 	<th scope="row">{index}</th>
-	<td class="px-6 py-0" bind:textContent={firstName} contenteditable>{firstName}</td>
-	<td class="px-6 py-0" bind:textContent={lastName} contenteditable>{lastName}</td>
+	<td class="px-6 py-0" bind:textContent={data.firstName} contenteditable>{data.firstName}</td>
+	<td class="px-6 py-0" bind:textContent={data.lastName} contenteditable>{data.lastName}</td>
 	<td class="flex flex-row px-2 py-0">
 		<div class="flex-none w-20">
 			<input bind:value={ssnLeft} type="number" />
@@ -45,10 +47,10 @@
 			<input bind:value={ssnRight} type="number" />
 		</div>
 	</td>
-	<td class="px-6 py-0" bind:textContent={email} contenteditable>{email}</td>
-	<td class="px-6 py-0" bind:textContent={country} contenteditable>{country}</td>
-	<td class="px-6 py-0" bind:textContent={address} contenteditable>{address}</td>
-	<td class="px-6 py-0" bind:textContent={city} contenteditable>{city}</td>
-	<td class="px-6 py-0" bind:textContent={state} contenteditable>{state}</td>
-	<td class="px-6 py-0"><input bind:value={zipcode} type="number" /></td>
+	<td class="px-6 py-0" bind:textContent={data.email} contenteditable>{data.email}</td>
+	<td class="px-6 py-0" bind:textContent={data.country} contenteditable>{data.country}</td>
+	<td class="px-6 py-0" bind:textContent={data.address} contenteditable>{data.address}</td>
+	<td class="px-6 py-0" bind:textContent={data.city} contenteditable>{data.city}</td>
+	<td class="px-6 py-0" bind:textContent={data.state} contenteditable>{data.state}</td>
+	<td class="px-6 py-0"><input bind:value={data.zipcode} type="number" /></td>
 </tr>
