@@ -1,7 +1,8 @@
 <script lang="ts">
+	import { page } from '$app/stores';
 	const navigation = [
-		{ label: 'Manual Entry', href: 'manual-entry' },
-		{ label: 'Randomized CTOs', href: 'randomized' }
+		{ label: 'Manual Entry', href: `${$page.url}/manual-entry` },
+		{ label: 'Randomized CTOs', href: `${$page.url}/randomized` }
 	];
 </script>
 
