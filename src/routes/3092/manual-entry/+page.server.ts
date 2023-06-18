@@ -151,7 +151,7 @@ export const actions: Actions = {
 					'',
 					'',
 					'Y',
-					'FL',
+					data.states[i],
 					'',
 					'',
 					'',

@@ -1,20 +1,21 @@
-<script lang="ts">    
+<script lang="ts">
+	import { page } from '$app/stores';
+	import { Navbar, NavBrand, NavLi, NavUl, NavHamburger } from 'flowbite-svelte';
+
 	const navigation = [
-		{ label: 'Manual Entry', href: `manual-entry` },
-		{ label: 'Static Row Entry', href: `row-entry` },
-		{ label: 'Randomized CTOs', href: `randomized` }
+		{ label: 'Manual Entry', href: `${$page.url.pathname}/manual-entry` },
+		{ label: 'Static Row Entry', href: `${$page.url.pathname}/row-entry` },
+		{ label: 'Randomized CTOs', href: `${$page.url.pathname}/randomized` }
 	];
 </script>
 
-<nav>
-    <h1 class="text-3xl ml-3 mt-5">3092</h1>
-
-    <div class="my-2">
-	{#each navigation as nav}
-        <a class="mx-3" href="/3092/{nav.href}">{nav.label}</a>
-    {/each}
-    </div>
-</nav>
+<Navbar let:hidden let:toggle class="flex">
+	<NavUl {hidden} class="flex-1 flex justify-center mr-auto">
+		{#each navigation as nav}
+			<NavLi href={nav.href} active={$page.url.pathname === nav.href}>{nav.label}</NavLi>
+		{/each}
+	</NavUl>
+</Navbar>
 
 <div>
 	<slot />

@@ -1,3 +1,5 @@
+const colors = require('tailwindcss/colors');
+
 const config = {
 	content: [
 		'./src/**/*.{html,js,svelte,ts}',
@@ -6,13 +8,27 @@ const config = {
 
 	theme: {
 		extend: {
-			fontFamily: {
-				sans: ['Inter', 'sans-serif', 'system-ui']
+			colors: {
+				// flowbite-svelte
+				primary: {
+					50: '#eff6ff',
+					100: '#dbeafe',
+					200: '#bfdbfe',
+					300: '#93c5fd',
+					400: '#60a5fa',
+					500: '#3b82f6',
+					600: '#2563eb',
+					700: '#1d4ed8',
+					800: '#1e40af',
+					900: '#1e3a8a'
+				},
+				gray: colors.gray
 			}
 		}
 	},
+	plugins: [require('flowbite/plugin')],
 
-	plugins: [require('flowbite/plugin')]
+	darkMode: 'class'
 };
 
 module.exports = config;

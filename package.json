@@ -45,6 +45,7 @@
 		"chance": "^1.1.11",
 		"classnames": "^2.3.2",
 		"flowbite": "^1.6.5",
-		"flowbite-svelte": "^0.37.5"
+		"flowbite-svelte": "^0.37.5",
+		"svelte-copy-to-clipboard": "^0.2.5"
 	}
 }
