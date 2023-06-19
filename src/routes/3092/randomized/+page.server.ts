@@ -2233,7 +2233,6 @@ export const actions: Actions = {
 			const homePhone = randomPhoneNumber();
 			const officePhone = randomPhoneNumber();
 			const mobilePhone = randomPhoneNumber();
-
 			for (let i = 0; i < data.certCardID.length; i++) {
 				randomList.push(
 					[
