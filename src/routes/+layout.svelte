@@ -15,11 +15,14 @@
 		Button,
 		DarkMode
 	} from 'flowbite-svelte';
+	import type { LayoutData } from './$types';
 
 	const navigation = [
 		{ label: 'Home', href: '/' },
 		{ label: '3092', href: '/3092' }
 	];
+
+	export let data: LayoutData;
 </script>
 
 <svelte:head>

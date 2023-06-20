@@ -6,7 +6,7 @@
 	<div class="flex w-full flex-col items-center">
 		<Card class="mt-6 w-full" padding="xl" size="md">
 			<form class="flex flex-col space-y-6">
-				<h3 class="text-xl font-medium text-gray-900 dark:text-white">Sign in to our platform</h3>
+				<h3 class="text-xl font-medium text-gray-900 dark:text-white">Register new user</h3>
 				<Label class="space-y-2">
 					<span>Email</span>
 					<Input type="email" name="email" placeholder="name@company.com" required />

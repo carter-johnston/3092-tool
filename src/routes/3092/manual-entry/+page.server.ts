@@ -1,4 +1,5 @@
 import type { Actions, PageServerLoad } from './$types';
+import prisma from '$lib/prisma';
 
 const users = [
 	{
@@ -8,6 +9,7 @@ const users = [
 ];
 
 type Data = {
+	name: string[];
 	certCardIds: string[];
 	certPins: string[];
 	firstNames: string[];
@@ -44,6 +46,7 @@ export const actions: Actions = {
 		// ASSUME form data is passed if a req is made (frontend can handle validation)
 
 		const data: Data = {
+			name: String(formData.get('name')),
 			certCardIds: String(formData.get('cert-cards')).split(','),
 			certPins: String(formData.get('certPins')).split(','),
 			lastNames: String(formData.get('last-name')).split(','),
@@ -158,6 +161,15 @@ export const actions: Actions = {
 					'Card Creation'
 				].join(',')
 			);
+
+			const listCopy = [...newList];
+
+			const ctoString = await prisma.cto3092.create({
+				data: {
+					name: data.name.toString(),
+					cto: listCopy.toString()
+				}
+			});
 		}
 
 		return {

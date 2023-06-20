@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Label, Textarea, P, Hr, Button } from 'flowbite-svelte';
+	import { Label, Textarea, P, Hr, Button, Input } from 'flowbite-svelte';
 </script>
 
 <h1 class="text-3xl text-center mt-2 mb-2 text-gray-700 dark:text-gray-400">Manual Entry</h1>
@@ -9,6 +9,12 @@
 <Hr class="my-8" height="h-px" />
 
 <form method="POST">
+	<div class="flex flex-col items-center">
+		<div class="mb-6 justify-center">
+			<Label for="name">CTO Grouping Name</Label>
+			<Input id="name" name="name" />
+		</div>
+	</div>
 	<div class="grid gap-6 mb-6 md:grid-cols-2">
 		<div>
 			<Label for="cert-cards">Cert Card IDs</Label>
