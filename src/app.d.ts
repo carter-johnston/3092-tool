@@ -10,11 +10,20 @@ declare global {
 		interface Locals {
 			supabase: SupabaseClient<Database>;
 			getSession(): Promise<Session | null>;
+			auth: import('lucia').AuthRequest;
 		}
 		interface PageData {
 			session: Session | null;
 		}
 		// interface Platform {}
+	}
+	namespace Lucia {
+		type Auth = import('$lib/server/lucia');
+		type UserAttributes = {
+			email: string;
+			name: string;
+			password: string;
+		};
 	}
 }
 

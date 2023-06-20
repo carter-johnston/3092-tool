@@ -1,5 +1,5 @@
 import type { Actions, PageServerLoad } from './$types';
-import prisma from '$lib/prisma';
+import prisma from '$lib/server/prisma';
 
 const users = [
 	{
@@ -161,16 +161,14 @@ export const actions: Actions = {
 					'Card Creation'
 				].join(',')
 			);
-
-			const listCopy = [...newList];
-
-			const ctoString = await prisma.cto3092.create({
-				data: {
-					name: data.name.toString(),
-					cto: listCopy.toString()
-				}
-			});
 		}
+
+		const ctoString = await prisma.cto3092.create({
+			data: {
+				name: data.name.toString(),
+				cto: newList.toString()
+			}
+		});
 
 		return {
 			success: true,
