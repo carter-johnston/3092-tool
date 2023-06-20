@@ -7,14 +7,14 @@
 
 <h1 class="text-3xl text-center mt-2 mb-2 text-gray-700 dark:text-gray-400">Dashboard</h1>
 
-<div>
-	{#each data.cto3092 as ctos}
-		<Card class="max-w-fit">
+<div class="w-auto">
+	{#each data.cto3092 as { groupingName, certCardId, certPin, lastname, firstName }}
+		<Card class="max-w-max">
 			<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-				{ctos.name}
+				{groupingName}
 			</h5>
 			<p class="font-normal text-gray-700 dark:text-gray-400 leading-tight">
-				{ctos.cto}
+				3029,{certCardId}
 			</p>
 		</Card>
 	{/each}

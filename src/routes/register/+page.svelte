@@ -1,5 +1,8 @@
 <script lang="ts">
 	import { Card, Button, Label, Input, Checkbox } from 'flowbite-svelte';
+	import type { PageData } from './$types';
+
+	export let data: PageData;
 </script>
 
 <div class="py-20">
@@ -10,10 +13,6 @@
 				<Label class="space-y-2">
 					<span>Username</span>
 					<Input type="text" id="username" name="username" placeholder="dxmato" required />
-				</Label>
-				<Label class="space-y-2">
-					<span>Email</span>
-					<Input type="email" id="email" name="email" placeholder="name@company.com" required />
 				</Label>
 				<Label class="space-y-2">
 					<span>Your password</span>

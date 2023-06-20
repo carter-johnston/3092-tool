@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -10,25 +7,34 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
-}
-
-model cto3092 {
-  id   Int    @id @default(autoincrement())
-  name String
-  cto  String
+model Cto3092 {
+  id           Int     @id @default(autoincrement())
+  groupingName String?
+  certCardId   String?
+  certPin      String?
+  lastName     String?
+  firstName    String?
+  addressLine1 String?
+  addressLine2 String?
+  addressLine3 String?
+  country      String?
+  dob          String?
+  homePhone    String?
+  officePhone  String?
+  mobilePhone  String?
+  ssn          String?
+  email        String?
+  city         String?
+  state        String?
+  zip          String?
 }
 
 model AuthUser {
   id           String        @id @unique
-  auth_session AuthSession[]
-  auth_key     AuthKey[]
   username     String
-  email        String        @unique
-  password     String
+  role         String?
+  auth_key     AuthKey[]
+  auth_session AuthSession[]
 
   @@map("auth_user")
 }
@@ -38,7 +44,7 @@ model AuthSession {
   user_id        String
   active_expires BigInt
   idle_expires   BigInt
-  auth_user      AuthUser @relation(references: [id], fields: [user_id], onDelete: Cascade)
+  auth_user      AuthUser @relation(fields: [user_id], references: [id], onDelete: Cascade)
 
   @@index([user_id])
   @@map("auth_session")
@@ -50,7 +56,7 @@ model AuthKey {
   user_id         String
   primary_key     Boolean
   expires         BigInt?
-  auth_user       AuthUser @relation(references: [id], fields: [user_id], onDelete: Cascade)
+  auth_user       AuthUser @relation(fields: [user_id], references: [id], onDelete: Cascade)
 
   @@index([user_id])
   @@map("auth_key")

@@ -17,12 +17,11 @@ declare global {
 		}
 		// interface Platform {}
 	}
-	namespace Lucia {
-		type Auth = import('$lib/server/lucia');
+	declare namespace Lucia {
+		type Auth = import('$lib/server/lucia.js').Auth;
 		type UserAttributes = {
-			email: string;
-			name: string;
-			password: string;
+			username: string;
+			role: string;
 		};
 	}
 }

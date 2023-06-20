@@ -1,5 +1,6 @@
 import type { Actions, PageServerLoad } from './$types';
 import prisma from '$lib/server/prisma';
+import { redirect } from '@sveltejs/kit';
 
 const users = [
 	{
@@ -33,16 +34,14 @@ type Entry = {
 	ctoList: string[];
 };
 
-export const load: PageServerLoad = async () => {
-	return {
-		users
-	};
+export const load: PageServerLoad = async ({ locals }) => {
+	const { session } = await locals.auth.validateUser();
+	if (!session) throw redirect(302, '/login');
 };
 
 export const actions: Actions = {
 	default: async ({ request }) => {
 		const formData = await request.formData();
-		const certCard = formData.get('cert-cards');
 		// ASSUME form data is passed if a req is made (frontend can handle validation)
 
 		const data: Data = {
@@ -163,12 +162,34 @@ export const actions: Actions = {
 			);
 		}
 
-		const ctoString = await prisma.cto3092.create({
-			data: {
-				name: data.name.toString(),
-				cto: newList.toString()
+		for (let i = 0; i < data.certCardIds.length; i++) {
+			try {
+				await prisma.cto3092.create({
+					data: {
+						groupingName: data.name,
+						certCardId: data.certCardIds[i],
+						certPin: data.certPins[i],
+						lastName: data.lastNames[i],
+						firstName: data.firstNames[i],
+						addressLine1: data.addressLine1[i],
+						addressLine2: data.addressLine2[i],
+						addressLine3: data.addressLine3[i],
+						country: data.countries[i],
+						dob: data.dobs[i],
+						homePhone: data.homePhones[i],
+						officePhone: data.officePhones[i],
+						mobilePhone: data.mobilePhones[i],
+						ssn: data.ssns[i],
+						email: data.emails[i],
+						city: data.cities[i],
+						state: data.states[i],
+						zip: data.zipcodes[i]
+					}
+				});
+			} catch (e) {
+				console.log(e);
 			}
-		});
+		}
 
 		return {
 			success: true,
