@@ -2206,10 +2206,10 @@ type Entry = {
 	ctoList: string[];
 };
 
-export const load: PageServerLoad = async ({ locals }) => {
-	const { session } = await locals.auth.validateUser();
-	if (!session) throw redirect(302, '/login');
-};
+// export const load: PageServerLoad = async ({ locals }) => {
+// 	const { session } = await locals.auth.validateUser();
+// 	if (!session) throw redirect(302, '/login');
+// };
 
 export const actions: Actions = {
 	default: async ({ request }) => {

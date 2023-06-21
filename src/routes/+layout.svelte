@@ -1,5 +1,6 @@
 <script lang="ts">
 	import '../app.css';
+	import { dev } from '$app/environment';
 	import { page } from '$app/stores';
 
 	import {
@@ -30,7 +31,7 @@
 </svelte:head>
 
 <Navbar let:hidden let:toggle class="drop-shadow">
-	{#if !data.user}
+	{#if !data.user && !dev}
 		<div class="flex md:order-2 items-end justify-end">
 			<Button size="sm" href="/login" type="button">Login</Button>
 		</div>
