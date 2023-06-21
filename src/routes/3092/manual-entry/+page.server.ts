@@ -183,7 +183,8 @@ export const actions: Actions = {
 						email: data.emails[i],
 						city: data.cities[i],
 						state: data.states[i],
-						zip: data.zipcodes[i]
+						zip: data.zipcodes[i],
+						cto: newList
 					}
 				});
 			} catch (e) {
