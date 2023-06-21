@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { ActionData } from './$types';
-	import { Label, Textarea, Hr, P, Button, Modal, Toast } from 'flowbite-svelte';
+	import { Label, Textarea, Hr, P, Button, Modal, Alert } from 'flowbite-svelte';
 	import { fly } from 'svelte/transition';
 	import ManualEntryForm from './ManualEntryForm.svelte';
 
@@ -26,6 +26,44 @@
 
 {#if form?.success}
 	<Modal open size="xl" outsideclose>
+		<div>
+			{#if isCopied}
+				<Alert color="green" dismissable>
+					<svg
+						slot="icon"
+						aria-hidden="true"
+						class="w-5 h-5"
+						fill="currentColor"
+						viewBox="0 0 20 20"
+						xmlns="http://www.w3.org/2000/svg"
+						><path
+							fill-rule="evenodd"
+							d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+							clip-rule="evenodd"
+						/></svg
+					>
+					CTO Strings successfully copied to clipboard.
+				</Alert>
+			{/if}
+			{#if notCopied}
+				<Alert color="red" dismissable>
+					<svg
+						slot="icon"
+						aria-hidden="true"
+						class="w-5 h-5"
+						fill="currentColor"
+						viewBox="0 0 20 20"
+						xmlns="http://www.w3.org/2000/svg"
+						><path
+							fill-rule="evenodd"
+							d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+							clip-rule="evenodd"
+						/></svg
+					>
+					Issue copying CTO Strings. Please try again.
+				</Alert>
+			{/if}
+		</div>
 		<h5 class="text-center">CTO String(s):</h5>
 		<div id="ctos">
 			{#each form.ctoData as ctoString}
@@ -35,47 +73,5 @@
 		<svelte:fragment slot="footer">
 			<Button id="copyBtn" on:click={copyToClipboard}>Copy to Clipboard</Button>
 		</svelte:fragment>
-		<div>
-			{#if isCopied}
-				<Toast color="green" position="bottom-right" transition={fly} params={{ x: 200 }}>
-					<svelte:fragment slot="icon">
-						<svg
-							aria-hidden="true"
-							class="w-5 h-5"
-							fill="currentColor"
-							viewBox="0 0 20 20"
-							xmlns="http://www.w3.org/2000/svg"
-							><path
-								fill-rule="evenodd"
-								d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-								clip-rule="evenodd"
-							/></svg
-						>
-						<span class="sr-only">Check icon</span>
-					</svelte:fragment>
-					CTO Strings Successfully Copied
-				</Toast>
-			{/if}
-			{#if notCopied}
-				<Toast color="red" position="bottom-right" transition={fly} params={{ x: 200 }}>
-					<svelte:fragment slot="icon">
-						<svg
-							aria-hidden="true"
-							class="w-5 h-5"
-							fill="currentColor"
-							viewBox="0 0 20 20"
-							xmlns="http://www.w3.org/2000/svg"
-							><path
-								fill-rule="evenodd"
-								d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-								clip-rule="evenodd"
-							/></svg
-						>
-						<span class="sr-only">Error icon</span>
-					</svelte:fragment>
-					Unable to Copy to Clipboard. Please try again.
-				</Toast>
-			{/if}
-		</div>
 	</Modal>
 {/if}

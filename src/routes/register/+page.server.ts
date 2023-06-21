@@ -2,6 +2,11 @@ import { fail, redirect } from '@sveltejs/kit';
 import { auth } from '$lib/server/lucia';
 import type { PageServerLoad, Actions } from './$types';
 
+enum Roles {
+	ADMIN = 'ADMIN',
+	USER = 'USER'
+}
+
 export const load: PageServerLoad = async ({ locals }) => {
 	const { session } = await locals.auth.validateUser();
 	if (session) throw redirect(302, '/');

@@ -10,23 +10,23 @@ datasource db {
 model Cto3092 {
   id           Int     @id @default(autoincrement())
   groupingName String
-  certCardId   String?
-  certPin      String?
-  lastName     String?
-  firstName    String?
-  addressLine1 String?
-  addressLine2 String?
-  addressLine3 String?
-  country      String?
-  dob          String?
-  homePhone    String?
-  officePhone  String?
-  mobilePhone  String?
-  ssn          String?
-  email        String?
-  city         String?
-  state        String?
-  zip          String?
+  certCardId   String
+  certPin      String
+  lastName     String
+  firstName    String
+  addressLine1 String
+  addressLine2 String? @default("")
+  addressLine3 String? @default("")
+  country      String
+  dob          String
+  homePhone    String? @default("")
+  officePhone  String? @default("")
+  mobilePhone  String? @default("")
+  ssn          String
+  email        String
+  city         String
+  state        String
+  zip          String
 }
 
 model AuthUser {

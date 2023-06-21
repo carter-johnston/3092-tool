@@ -34,10 +34,13 @@ type Entry = {
 	ctoList: string[];
 };
 
-// export const load: PageServerLoad = async ({ locals }) => {
-// 	const { session } = await locals.auth.validateUser();
-// 	if (!session) throw redirect(302, '/login');
-// };
+export const load: PageServerLoad = async ({ locals }) => {
+	const { user } = await locals.auth.validateUser();
+	if (!user) throw redirect(302, '/login');
+	return {
+		user
+	};
+};
 
 export const actions: Actions = {
 	default: async ({ request }) => {
@@ -183,8 +186,7 @@ export const actions: Actions = {
 						email: data.emails[i],
 						city: data.cities[i],
 						state: data.states[i],
-						zip: data.zipcodes[i],
-						cto: newList
+						zip: data.zipcodes[i]
 					}
 				});
 			} catch (e) {
