@@ -9,7 +9,7 @@ datasource db {
 
 model Cto3092 {
   id           Int     @id @default(autoincrement())
-  groupingName String?
+  groupingName String
   certCardId   String?
   certPin      String?
   lastName     String?
