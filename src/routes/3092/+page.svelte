@@ -7,8 +7,8 @@
 	let isCopied = false;
 	let notCopied = false;
 
-	async function copyToClipboard() {
-		const text = document.getElementById('ctos')!.innerText;
+	async function copyToClipboard(i : number) {
+		const text = document.getElementById(`ctos${i}`)!.innerText;
 
 		try {
 			const copiedText = await navigator.clipboard.writeText(text);
@@ -31,22 +31,22 @@
 
 <div class="w-auto">
 	<div class="max-w-max">
-		{#each data.cto3092Grouped as ctoStringList}
+		{#each data.cto3092Grouped as ctoStringList, i}
 			<Card class="mb-10 max-w-screen-2xl">
 				<h5
 					class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center"
 				>
 					{ctoStringList[0].groupingName}
 				</h5>
-				<div id="ctos">
-					{#each ctoStringList as { certCardId, certPin, firstName, lastName, addressLine1, addressLine2, addressLine3, city, state, country, zip, dob, ssn, email, homePhone, officePhone, mobilePhone }}
+				<div id="ctos{i}">
+					{#each ctoStringList as { certCardId, certPin, firstName, lastName, addressLine1, addressLine2, addressLine3, city, state, country, zip, dob, ssn, email, homePhone, officePhone, mobilePhone }, j}
 						<p class="font-normal text-sm text-gray-700 dark:text-gray-400 leading-tight mb-5">
 							3092,{certCardId},{certPin},,,{lastName},{firstName},,,{addressLine1},{addressLine2},{addressLine3},{city},{state},{country},{zip},{dob},{ssn},,,,{email},{homePhone},{officePhone},{mobilePhone},,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Y,{state},,,,Card
 							Creation
 						</p>
 					{/each}
 				</div>
-				<Button on:click={copyToClipboard} class="max-w-fit">Get CTOs</Button>
+				<Button on:click={() => {copyToClipboard(i)}} class="max-w-fit">Get CTOs</Button>
 			</Card>
 		{/each}
 		<div>
