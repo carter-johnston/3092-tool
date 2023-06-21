@@ -1,13 +1,24 @@
 import { fail, redirect } from '@sveltejs/kit';
 import { auth } from '$lib/server/lucia';
 import type { PageServerLoad, Actions } from './$types';
-import prisma from '$lib/server/prisma';
+
+export const load: PageServerLoad = async ({ locals }) => {
+	const { session } = await locals.auth.validateUser();
+	if (session) throw redirect(302, '/');
+	return {};
+};
 
 export const actions: Actions = {
 	default: async ({ request, locals }) => {
 		const form = await request.formData();
 		const username = form.get('username');
 		const password = form.get('password');
+		const role = form.get('role');
+
+		// check for empty values
+		if (typeof username !== 'string' || typeof password !== 'string') {
+			return fail(400);
+		}
 
 		try {
 			const user = await auth.createUser({
@@ -17,23 +28,15 @@ export const actions: Actions = {
 					password
 				},
 				attributes: {
-					username
+					username,
+					role
 				}
 			});
 			const session = await auth.createSession(user.userId);
 			locals.auth.setSession(session);
-		} catch (error) {
-			console.log(error);
-			return fail(500, {
-				message: 'Unknown error occurred'
-			});
+		} catch {
+			// username taken
+			return fail(400);
 		}
-	}
-};
-
-export const load: PageServerLoad = async ({ locals }) => {
-	const session = await locals.auth.validate();
-	if (session) {
-		throw redirect(302, '/');
 	}
 };

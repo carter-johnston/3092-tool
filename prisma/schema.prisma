@@ -32,7 +32,7 @@ model Cto3092 {
 model AuthUser {
   id           String        @id @unique
   username     String
-  role         String?
+  role         String
   auth_key     AuthKey[]
   auth_session AuthSession[]
 

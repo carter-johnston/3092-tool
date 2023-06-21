@@ -8,7 +8,6 @@ export const auth = lucia({
 	adapter: prismaAdapter(prisma),
 	env: dev ? 'DEV' : 'PROD',
 	middleware: sveltekit(),
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	transformDatabaseUser: (userData) => {
 		return {
 			userId: userData.id,

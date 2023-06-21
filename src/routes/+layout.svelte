@@ -31,7 +31,7 @@
 </svelte:head>
 
 <Navbar let:hidden let:toggle class="drop-shadow">
-	{#if !data.user && !dev}
+	{#if !data.user}
 		<div class="flex md:order-2 items-end justify-end">
 			<Button size="sm" href="/login" type="button">Login</Button>
 		</div>
