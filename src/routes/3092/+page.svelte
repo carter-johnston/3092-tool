@@ -68,10 +68,10 @@
 	created. Use the search to find a group of CTOs you would like to reuse.</P
 >
 
-<div class="w-auto">
-	<div class="max-w-max">
+<div class="w-full">
+	<div>
 		{#each data.cto3092Grouped as ctoStringList, i}
-			<Card class="mb-10 max-w-screen-2xl">
+			<Card class="mb-10 min-w-full md:width-auto">
 				<h5
 					class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center"
 				>
