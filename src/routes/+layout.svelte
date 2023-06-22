@@ -30,7 +30,7 @@
 	<title>BLSQA Automation Fun</title>
 </svelte:head>
 
-<Navbar let:hidden let:toggle class="drop-shadow">
+<Navbar let:hidden let:toggle class="drop-shadow" data-sveltekit-reload>
 	{#if !data.user}
 		<div class="flex md:order-2 items-end justify-end">
 			<Button size="sm" href="/login" type="button">Login</Button>

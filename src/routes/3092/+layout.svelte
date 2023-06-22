@@ -10,7 +10,7 @@
 	];
 </script>
 
-<Navbar let:hidden let:toggle class="flex">
+<Navbar let:hidden let:toggle class="flex" data-sveltekit-reload>
 	<NavUl {hidden} class="flex-1 flex justify-center mr-auto">
 		{#each navigation as nav}
 			<NavLi href={nav.href} active={$page.url.pathname === nav.href}>{nav.label}</NavLi>
