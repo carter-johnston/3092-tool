@@ -2356,7 +2356,7 @@ export const actions: Actions = {
 		}
 
 		function randomPhoneNumber() {
-			const randomPhone = Math.floor(Math.random() * 9000000000);
+			const randomPhone = Math.floor(Math.random() * 9000000000) + 1000000000;
 
 			return randomPhone;
 		}
