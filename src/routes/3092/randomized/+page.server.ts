@@ -2350,7 +2350,7 @@ export const actions: Actions = {
 		}
 
 		function generateRandomSSN() {
-			const randomSSN = Math.floor(Math.random() * 900000000);
+			const randomSSN = Math.floor(Math.random() * 900000000) + 100000000;
 
 			return randomSSN;
 		}
