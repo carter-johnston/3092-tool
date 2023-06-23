@@ -2221,7 +2221,7 @@ export const actions: Actions = {
 			certCardID: String(formData.get('cert-card')).split(','),
 			certPin: String(formData.get('certPin')).split(','),
 			email: String(formData.get('email')).split(','),
-			numCards: Number(formData.get('cardNumber'))
+			numCards: Number(formData.get('cardNumber') - 1)
 		};
 
 		const randomList = [];

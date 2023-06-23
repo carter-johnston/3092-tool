@@ -5,7 +5,6 @@
 	const navigation = [
 		{ label: 'Dashboard', href: `/3092` },
 		{ label: 'Manual Entry', href: `/3092/manual-entry` },
-		{ label: 'Static Row Entry', href: `/3092/row-entry` },
 		{ label: 'Randomized CTOs', href: `/3092/randomized` }
 	];
 </script>
