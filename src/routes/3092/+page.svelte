@@ -6,6 +6,7 @@
 	export let data: PageData;
 	let isCopied = false;
 	let notCopied = false;
+    let searchTerm = "";
 
 	async function copyToClipboard(i: number) {
 		const text = document.getElementById(`ctos${i}`)!.innerText;
@@ -20,8 +21,20 @@
 		}
 	}
 
-	$: console.log(data);
-</script>
+    function searchByGroupingName(searchTerm : string) {
+        grouping = data.cto3092Grouped;
+        grouping = grouping.filter(item => item[0].groupingName.includes(searchTerm));
+    }
+
+    let grouping : {[key: string]: any[]};
+    if (data) {
+        grouping = data.cto3092Grouped
+    } 
+
+    $: searchByGroupingName(searchTerm);
+    $: console.log(grouping);
+    
+</script>   
 
 <div>
 	{#if isCopied}
@@ -68,13 +81,13 @@
 	created. Use the search to find a group of CTOs you would like to reuse.</P
 >
 
+<input bind:value={searchTerm} type="search">
+
 <div class="w-full">
 	<div>
-		{#each data.cto3092Grouped as ctoStringList, i}
+		{#each grouping as ctoStringList, i}
 			<Card class="mb-10 min-w-full md:width-auto">
-				<h5
-					class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center"
-				>
+				<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center">
 					{ctoStringList[0].groupingName}
 				</h5>
 				<div id="ctos{i}">

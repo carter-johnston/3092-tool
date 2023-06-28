@@ -9,6 +9,16 @@ datasource db {
   shadowDatabaseUrl = env("POSTGRES_URL_NON_POOLING") // used for migrations
 }
 
+// running locally -CJ
+// delete migration files
+// uncomment sqlite data source
+// npx migrate dev
+
+// datasource db {
+//   provider = "sqlite"
+//   url      = env("DATABASE_URL")
+// }
+
 model Cto3092 {
   id           Int     @id @default(autoincrement())
   groupingName String
