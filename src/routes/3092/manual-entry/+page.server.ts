@@ -1,6 +1,6 @@
 import type { Actions, PageServerLoad } from './$types';
 import prisma from '$lib/server/prisma';
-import { redirect } from '@sveltejs/kit';
+import { redirect, fail } from '@sveltejs/kit';
 
 const users = [
 	{
@@ -37,6 +37,7 @@ type Entry = {
 export const load: PageServerLoad = async ({ locals }) => {
 	const { user } = await locals.auth.validateUser();
 	if (!user) throw redirect(302, '/login');
+
 	return {
 		user
 	};
