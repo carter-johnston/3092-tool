@@ -6,7 +6,7 @@
 	export let data: PageData;
 	let isCopied = false;
 	let notCopied = false;
-    let searchTerm = "";
+	let searchTerm = '';
 
 	async function copyToClipboard(i: number) {
 		const text = document.getElementById(`ctos${i}`)!.innerText;
@@ -21,20 +21,34 @@
 		}
 	}
 
-    function searchByGroupingName(searchTerm : string) {
-        grouping = data.cto3092Grouped;
-        grouping = grouping.filter(item => item[0].groupingName.includes(searchTerm));
-    }
+	function searchByGroupingName(searchTerm: string) {
+		grouping = data.cto3092Grouped;
+		grouping = grouping.filter((item) =>
+			item[0].groupingName.toUpperCase().includes(searchTerm.toUpperCase())
+		);
+	}
 
-    let grouping : {[key: string]: any[]};
-    if (data) {
-        grouping = data.cto3092Grouped
-    } 
+	function exportToExcel() {
+		
+	}
 
-    $: searchByGroupingName(searchTerm);
-    $: console.log(grouping);
-    
-</script>   
+	function generateExcelSheet(dataset) {
+		let wb = XLSX.utils.book_new();
+		dataset.forEach((sheet, i) => {
+			let dataWS = XLSX.utils.aoa_to_sheet(sheet);
+			XLSX.utils.book_append_sheet(wb, dataWS, `sheet_${i + 1}`);
+		});
+		XLSX.writeFile(wb, `results_${DateTime.now().toFormat('yyyy_LLL_dd')}.xlsx`);
+	}
+
+	let grouping: { [key: string]: any[] };
+	if (data) {
+		grouping = data.cto3092Grouped;
+	}
+
+	$: searchByGroupingName(searchTerm);
+	$: console.log(grouping);
+</script>
 
 <div>
 	{#if isCopied}
@@ -80,20 +94,25 @@
 	>This the 3092 Dashboard. This page stores every single manual card entry grouping that has been
 	created. Use the search to find a group of CTOs you would like to reuse.</P
 >
-
-<input bind:value={searchTerm} type="search">
+<div class="flex flex-row justify-between">
+	<input bind:value={searchTerm} type="search" />
+	<button on:click={exportToExcel}>export to Excel</button>
+</div>
 
 <div class="w-full">
 	<div>
 		{#each grouping as ctoStringList, i}
 			<Card class="mb-10 min-w-full md:width-auto">
-				<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center">
+				<h5
+					class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center"
+				>
 					{ctoStringList[0].groupingName}
 				</h5>
 				<div id="ctos{i}">
 					{#each ctoStringList as { certCardId, certPin, firstName, lastName, addressLine1, addressLine2, addressLine3, city, state, country, zip, dob, ssn, email, homePhone, officePhone, mobilePhone }, j}
 						<p class="font-normal text-sm text-gray-700 dark:text-gray-400 leading-tight mb-5">
-							3092,{certCardId},{certPin},,,{lastName},{firstName},,,{addressLine1},{addressLine2},{addressLine3},{city},{state},{country},{zip},{dob},{ssn},,,,{email},{homePhone},{officePhone},{mobilePhone},,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Y,{state},,,,Card
+							3092,{certCardId},{
+								},,,{lastName},{firstName},,,{addressLine1},{addressLine2},{addressLine3},{city},{state},{country},{zip},{dob},{ssn},,,,{email},{homePhone},{officePhone},{mobilePhone},,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Y,{state},,,,Card
 							Creation
 						</p>
 					{/each}

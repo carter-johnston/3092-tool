@@ -1,48 +1,31 @@
-/*
-  Warnings:
-
-  - You are about to drop the `User` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `cto3092` table. If the table is not empty, all the data it contains will be lost.
-
-*/
--- DropTable
-PRAGMA foreign_keys=off;
-DROP TABLE "User";
-PRAGMA foreign_keys=on;
-
--- DropTable
-PRAGMA foreign_keys=off;
-DROP TABLE "cto3092";
-PRAGMA foreign_keys=on;
-
 -- CreateTable
 CREATE TABLE "Cto3092" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "groupingName" TEXT,
-    "certCardId" TEXT,
-    "certPin" TEXT,
-    "lastName" TEXT,
-    "firstName" TEXT,
-    "addressLine1" TEXT,
-    "addressLine2" TEXT,
-    "addressLine3" TEXT,
-    "country" TEXT,
-    "dob" TEXT,
-    "homePhone" TEXT,
-    "officePhone" TEXT,
-    "mobilePhone" TEXT,
-    "ssn" TEXT,
-    "email" TEXT,
-    "city" TEXT,
-    "state" TEXT,
-    "zip" TEXT
+    "groupingName" TEXT NOT NULL,
+    "certCardId" TEXT NOT NULL,
+    "certPin" TEXT NOT NULL,
+    "lastName" TEXT NOT NULL,
+    "firstName" TEXT NOT NULL,
+    "addressLine1" TEXT NOT NULL,
+    "addressLine2" TEXT DEFAULT '',
+    "addressLine3" TEXT DEFAULT '',
+    "country" TEXT NOT NULL,
+    "dob" TEXT NOT NULL,
+    "homePhone" TEXT DEFAULT '',
+    "officePhone" TEXT DEFAULT '',
+    "mobilePhone" TEXT DEFAULT '',
+    "ssn" TEXT NOT NULL,
+    "email" TEXT NOT NULL,
+    "city" TEXT NOT NULL,
+    "state" TEXT NOT NULL,
+    "zip" TEXT NOT NULL
 );
 
 -- CreateTable
 CREATE TABLE "auth_user" (
     "id" TEXT NOT NULL PRIMARY KEY,
     "username" TEXT NOT NULL,
-    "role" TEXT
+    "role" TEXT NOT NULL
 );
 
 -- CreateTable
