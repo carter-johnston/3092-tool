@@ -1,12 +1,13 @@
 <script lang="ts">
-	import { fly } from 'svelte/transition';
 	import type { PageData } from './$types';
-	import { Card, Button, P, Alert } from 'flowbite-svelte';
+	import { Card, Button, P, Alert, Search } from 'flowbite-svelte';
+	import XLSX from 'xlsx';
+	import { DateTime } from 'luxon';
 
 	export let data: PageData;
 	let isCopied = false;
 	let notCopied = false;
-    let searchTerm = "";
+	let searchTerm = '';
 
 	async function copyToClipboard(i: number) {
 		const text = document.getElementById(`ctos${i}`)!.innerText;
@@ -21,20 +22,32 @@
 		}
 	}
 
-    function searchByGroupingName(searchTerm : string) {
-        grouping = data.cto3092Grouped;
-        grouping = grouping.filter(item => item[0].groupingName.includes(searchTerm));
-    }
+	function searchByGroupingName(searchTerm: string) {
+		grouping = data.cto3092Grouped;
+		grouping = grouping.filter((item) =>
+			item[0].groupingName.toUpperCase().includes(searchTerm.toUpperCase())
+		);
+	}
 
-    let grouping : {[key: string]: any[]};
-    if (data) {
-        grouping = data.cto3092Grouped
-    } 
+	function exportToExcel() {}
 
-    $: searchByGroupingName(searchTerm);
-    $: console.log(grouping);
-    
-</script>   
+	function generateExcelSheet(dataset: any[]) {
+		let wb = XLSX.utils.book_new();
+		dataset.forEach((sheet, i) => {
+			let dataWS = XLSX.utils.aoa_to_sheet(sheet);
+			XLSX.utils.book_append_sheet(wb, dataWS, `sheet_${i + 1}`);
+		});
+		XLSX.writeFile(wb, `results_${DateTime.now().toFormat('yyyy_LLL_dd')}.xlsx`);
+	}
+
+	let grouping: { [key: string]: any[] };
+	if (data) {
+		grouping = data.cto3092Grouped;
+	}
+
+	$: searchByGroupingName(searchTerm);
+	$: console.log(grouping);
+</script>
 
 <div>
 	{#if isCopied}
@@ -81,13 +94,20 @@
 	created. Use the search to find a group of CTOs you would like to reuse.</P
 >
 
-<input bind:value={searchTerm} type="search">
+<Search
+	size="md"
+	bind:value={searchTerm}
+	placeholder="Search CTOs by typing in Grouping name"
+	class="mb-10 dark:bg-gray-800"
+/>
 
 <div class="w-full">
 	<div>
 		{#each grouping as ctoStringList, i}
 			<Card class="mb-10 min-w-full md:width-auto">
-				<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center">
+				<h5
+					class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center"
+				>
 					{ctoStringList[0].groupingName}
 				</h5>
 				<div id="ctos{i}">

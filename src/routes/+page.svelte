@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Heading, P } from 'flowbite-svelte';
+	import { Heading, P, Card } from 'flowbite-svelte';
 </script>
 
 <div class="text-center mt-10">

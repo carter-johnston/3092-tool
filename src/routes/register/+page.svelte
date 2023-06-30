@@ -28,10 +28,10 @@
 						required
 					/>
 				</Label>
-				<!-- <Label class="space-y-2">
+				<Label class="space-y-2">
 					<span>Role</span>
 					<Input type="text" id="role" name="role" placeholder="Enter" required />
-				</Label> -->
+				</Label>
 				<Button type="submit" class="w-full">Create account</Button>
 			</form>
 		</Card>
