@@ -1,7 +1,8 @@
 <script lang="ts">
-	import { fly } from 'svelte/transition';
 	import type { PageData } from './$types';
-	import { Card, Button, P, Alert } from 'flowbite-svelte';
+	import { Card, Button, P, Alert, Search } from 'flowbite-svelte';
+	import XLSX from 'xlsx';
+	import { DateTime } from 'luxon';
 
 	export let data: PageData;
 	let isCopied = false;
@@ -94,10 +95,13 @@
 	>This the 3092 Dashboard. This page stores every single manual card entry grouping that has been
 	created. Use the search to find a group of CTOs you would like to reuse.</P
 >
-<div class="flex flex-row justify-between">
-	<input bind:value={searchTerm} type="search" />
-	<button on:click={exportToExcel}>export to Excel</button>
-</div>
+
+<Search
+	size="md"
+	bind:value={searchTerm}
+	placeholder="Search CTOs by typing in Grouping name"
+	class="mb-10 dark:bg-gray-800"
+/>
 
 <div class="w-full">
 	<div>

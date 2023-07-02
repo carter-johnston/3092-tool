@@ -2186,6 +2186,7 @@ const postalCodes: string[] = [
 	'73842',
 	'73843'
 ];
+
 type Data = {
 	certCardID: string[];
 	certPin: string[];

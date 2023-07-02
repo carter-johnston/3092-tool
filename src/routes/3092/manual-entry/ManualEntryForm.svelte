@@ -1,21 +1,6 @@
 <script lang="ts">
-	import { Label, Textarea, P, Hr, Button, Input, Alert } from 'flowbite-svelte';
+	import { Label, Textarea, P, Hr, Button, Input } from 'flowbite-svelte';
 </script>
-
-<Alert color="yellow">
-	<span class="font-medium">IMPORTANT!</span> Please make grouping name meaningful for future reference.
-</Alert>
-
-<h1 class="text-3xl text-center mt-2 mb-2 text-gray-700 dark:text-gray-400">Manual Entry</h1>
-<P class="text-center text-gray-700 dark:text-gray-400"
-	>Please enter in cardholder info, separated by a comma, no spaces, if you are adding multiple.</P
->
-<Hr class="my-8" height="h-px" />
-<P class="mb-5 text-center" weight="light" color="text-gray-500 dark:text-gray-400"
-	>Form labels that are denoted with an * are required fields. Please fill them out.</P
->
-
-<P class="mb-5 text-center" weight="light" color="text-gray-500 dark:text-gray-400" />
 
 <form method="POST">
 	<div class="flex flex-col items-center">

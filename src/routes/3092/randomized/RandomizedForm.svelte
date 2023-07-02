@@ -1,13 +1,6 @@
 <script lang="ts">
-	import { Label, Input, Button, Hr, P } from 'flowbite-svelte';
+	import { Label, Input, Button, Hr, P, Radio } from 'flowbite-svelte';
 </script>
-
-<h1 class="text-3xl text-center mt-2 mb-2 text-gray-700 dark:text-gray-400">Randomized CTOs</h1>
-<P class="text-center text-gray-700 dark:text-gray-400"
-	>Please enter the information below. Cert Card ID, PIN and Email Address will be reused for all
-	CTO strings.</P
->
-<Hr class="my-8" height="h-px" />
 
 <form method="POST">
 	<div class="grid gap-6 mb-6 md:grid-cols-2">

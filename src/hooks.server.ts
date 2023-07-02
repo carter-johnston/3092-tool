@@ -12,7 +12,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 	// 	return await resolve(event);
 	// }
 
-	// if (event.locals.auth.role !== 'Admin' && event.url.pathname === '/register') {
+	// if (user.role != 'Admin' && event.url.pathname === '/register') {
 	// 	throw redirect(302, '/');
 	// }
 

@@ -2,9 +2,14 @@ import { fail, redirect } from '@sveltejs/kit';
 import { auth } from '$lib/server/lucia';
 import type { PageServerLoad, Actions } from './$types';
 
-export const load: PageServerLoad = async ({ locals }) => {
-	const { session } = await locals.auth.validateUser();
-	if (session) throw redirect(302, '/');
+export const load: PageServerLoad = async ({ locals, event }) => {
+	const { user } = await locals.auth.validateUser();
+	console.log(user);
+
+	if (user.role != 'Admin' && event.url.pathname === '/register') {
+		throw redirect(302, '/');
+	}
+	// // if (session) throw redirect(302, '/');
 	return {};
 };
 

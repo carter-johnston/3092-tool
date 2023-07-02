@@ -21,7 +21,6 @@ declare global {
 		type Auth = import('$lib/server/lucia.js').Auth;
 		type UserAttributes = {
 			username: string;
-			role: string;
 		};
 	}
 }

@@ -2,7 +2,6 @@
 	import RandomizedForm from './RandomizedForm.svelte';
 	import type { ActionData } from './$types';
 	import { Modal, P, Toast, Button, Alert } from 'flowbite-svelte';
-	import { fly } from 'svelte/transition';
 
 	export let form: ActionData;
 
