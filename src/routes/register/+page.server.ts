@@ -6,7 +6,7 @@ export const load: PageServerLoad = async ({ locals, event }) => {
 	const { user } = await locals.auth.validateUser();
 	console.log(user);
 
-	if (user.role != 'Admin' && event.url.pathname === '/register') {
+	if (user?.role != 'Admin' && event?.url.pathname === '/register') {
 		throw redirect(302, '/');
 	}
 	// // if (session) throw redirect(302, '/');
