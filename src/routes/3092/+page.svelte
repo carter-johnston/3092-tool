@@ -30,16 +30,21 @@
 	}
 
 	function exportToExcel() {
-		generateExcelSheet(grouping);
+		const dataset = [];
+		grouping.forEach((g) => {
+			g.forEach((x) => {
+				dataset.push(Object.values(x));
+			});
+		});
+		generateExcelSheet(dataset);
 	}
 
 	function generateExcelSheet(dataset) {
+		let ws = XLSX.utils.aoa_to_sheet(dataset);
+		console.log(ws);
 		let wb = XLSX.utils.book_new();
-		dataset.forEach((sheet, i) => {
-			let dataWS = XLSX.utils.aoa_to_sheet(sheet);
-			XLSX.utils.book_append_sheet(wb, dataWS, `sheet_${i + 1}`);
-		});
-		XLSX.writeFile(wb, `results_${DateTime.now().toFormat('yyyy_LLL_dd')}.xlsx`);
+		XLSX.utils.book_append_sheet(wb, ws, `sheet_1`);
+		XLSX.writeFileXLSX(wb, `${DateTime.now().toFormat('yyyy_LLL_dd')}.xlsx`);
 	}
 
 	let grouping: { [key: string]: any[] };
@@ -48,7 +53,6 @@
 	}
 
 	$: searchByGroupingName(searchTerm);
-	$: console.log(grouping);
 </script>
 
 <div>
