@@ -29,9 +29,11 @@
 		);
 	}
 
-	function exportToExcel() {}
+	function exportToExcel() {
+		generateExcelSheet(grouping);
+	}
 
-	function generateExcelSheet(dataset: any[]) {
+	function generateExcelSheet(dataset) {
 		let wb = XLSX.utils.book_new();
 		dataset.forEach((sheet, i) => {
 			let dataWS = XLSX.utils.aoa_to_sheet(sheet);
@@ -113,7 +115,7 @@
 				<div id="ctos{i}">
 					{#each ctoStringList as { certCardId, certPin, firstName, lastName, addressLine1, addressLine2, addressLine3, city, state, country, zip, dob, ssn, email, homePhone, officePhone, mobilePhone }, j}
 						<p class="font-normal text-sm text-gray-700 dark:text-gray-400 leading-tight mb-5">
-							3092,{certCardId},{certPin},,,{lastName},{firstName},,,{addressLine1},{addressLine2},{addressLine3},{city},{state},{country},{zip},{dob},{ssn},,,,{email},{homePhone},{officePhone},{mobilePhone},,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Y,{state},,,,Card
+							3092,{certCardId},,,,{lastName},{firstName},,,{addressLine1},{addressLine2},{addressLine3},{city},{state},{country},{zip},{dob},{ssn},,,,{email},{homePhone},{officePhone},{mobilePhone},,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Y,{state},,,,Card
 							Creation
 						</p>
 					{/each}
@@ -124,6 +126,7 @@
 					}}
 					class="max-w-fit">Get CTOs</Button
 				>
+				<Button on:click={exportToExcel} class="max-w-fit">Export</Button>
 			</Card>
 		{/each}
 	</div>
