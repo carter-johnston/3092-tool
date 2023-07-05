@@ -29,21 +29,31 @@
 		);
 	}
 
-	function exportToExcel() {
+	function exportToExcel(grouping) {
+		// dataset is an aoa getting passed into our sheetjs method
 		const dataset = [];
+
+		// get the header
+		dataset.push(Object.keys(grouping[0]));
+
+		// for eah row of the grouping, make an array of its values.
 		grouping.forEach((g) => {
-			g.forEach((x) => {
-				dataset.push(Object.values(x));
-			});
+			dataset.push(Object.values(g));
 		});
+
 		generateExcelSheet(dataset);
 	}
 
 	function generateExcelSheet(dataset) {
+		// create a worksheet
 		let ws = XLSX.utils.aoa_to_sheet(dataset);
-		console.log(ws);
+
+		// multiple sheets can make a workbook
 		let wb = XLSX.utils.book_new();
 		XLSX.utils.book_append_sheet(wb, ws, `sheet_1`);
+
+		// write file to browser. this is what initiates the download.
+		// second param is the filename
 		XLSX.writeFileXLSX(wb, `${DateTime.now().toFormat('yyyy_LLL_dd')}.xlsx`);
 	}
 
@@ -130,7 +140,12 @@
 					}}
 					class="max-w-fit">Get CTOs</Button
 				>
-				<Button on:click={exportToExcel} class="max-w-fit">Export</Button>
+				<Button
+					on:click={() => {
+						exportToExcel(ctoStringList);
+					}}
+					class="max-w-fit">Export</Button
+				>
 			</Card>
 		{/each}
 	</div>
