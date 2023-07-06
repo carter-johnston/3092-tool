@@ -134,18 +134,21 @@
 						</p>
 					{/each}
 				</div>
-				<Button
-					on:click={() => {
-						copyToClipboard(i);
-					}}
-					class="max-w-fit">Get CTOs</Button
-				>
-				<Button
-					on:click={() => {
-						exportToExcel(ctoStringList);
-					}}
-					class="max-w-fit">Export</Button
-				>
+				<div class="flex gap-3">
+					<Button
+						on:click={() => {
+							copyToClipboard(i);
+						}}
+						class="max-w-fit">Copy CTOs</Button
+					>
+					<Button
+						color="alternative"
+						on:click={() => {
+							exportToExcel(ctoStringList);
+						}}
+						class="max-w-fit justify-end">Export to Excel</Button
+					>
+				</div>
 			</Card>
 		{/each}
 	</div>
