@@ -21,9 +21,15 @@
 	}
 </script>
 
-<h1 class="text-3xl text-center mt-5 mb-2 text-gray-700 dark:text-gray-400">2901 CTO Generator</h1>
+<h1 class="text-3xl text-center mt-5 mb-2 text-gray-700 dark:text-gray-400">
+	2901 CTO Generator - Manual Transactions
+</h1>
 <P class="text-center text-gray-700 dark:text-gray-400"
 	>Please enter in Card Id or Card Number, a transaction amount and number of transactions.</P
+>
+<P class="text-center text-gray-700 dark:text-gray-400"
+	>Transaction amounts will be entered manually on this form. You can added multiple transactions
+	for the same card separated by commas.</P
 >
 <Hr class="my-8" height="h-px" />
 <P class="mb-5 text-center" weight="light" color="text-gray-500 dark:text-gray-400"
