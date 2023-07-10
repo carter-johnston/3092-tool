@@ -2375,7 +2375,7 @@ export const actions: Actions = {
 			let employeeID = '';
 			const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 			const charLength = characters.length;
-			const length = 10;
+			const length = 30;
 
 			for (let i = 0; i < length; i++) {
 				employeeID += characters.charAt(Math.floor(Math.random() * charLength));
