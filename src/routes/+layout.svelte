@@ -19,8 +19,8 @@
 	import type { LayoutData, PageData } from './$types';
 
 	const navigation = [
-		{ label: 'Home', href: '/' },
-		{ label: '3092', href: '/3092' }
+		{ label: '3092', href: '/3092' },
+		{ label: '2901', href: '/2901' }
 	];
 
 	export let data: PageData;

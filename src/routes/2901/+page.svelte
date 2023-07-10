@@ -1,7 +1,6 @@
 <script lang="ts">
-	import RandomizedForm from './RandomizedForm.svelte';
+	import { P, Hr, Label, Input, Button, Modal, Alert } from 'flowbite-svelte';
 	import type { ActionData } from './$types';
-	import { Modal, P, Hr, Button, Alert } from 'flowbite-svelte';
 
 	export let form: ActionData;
 
@@ -22,19 +21,44 @@
 	}
 </script>
 
-<h1 class="text-3xl text-center mt-2 mb-2 text-gray-700 dark:text-gray-400">Randomizer</h1>
+<h1 class="text-3xl text-center mt-5 mb-2 text-gray-700 dark:text-gray-400">2901 CTO Generator</h1>
 <P class="text-center text-gray-700 dark:text-gray-400"
-	>Please enter in Cert Card ID, Cert PIN, and Email address, and the number of cards you would like
-	to create.</P
+	>Please enter in Card Id or Card Number, a transaction amount and number of transactions.</P
 >
 <Hr class="my-8" height="h-px" />
 <P class="mb-5 text-center" weight="light" color="text-gray-500 dark:text-gray-400"
 	>Form labels that are denoted with an * are required fields. Please fill them out.</P
 >
 
-<P class="mb-5 text-center" weight="light" color="text-gray-500 dark:text-gray-400" />
-
-<RandomizedForm />
+<form method="POST">
+	<div class="grid gap-6 mb-6 md:grid-cols-2">
+		<div>
+			<Label for="card">Card ID / Number*</Label>
+			<Input
+				type="text"
+				id="card"
+				name="card"
+				placeholder="123456789 / 4011540032111234"
+				required
+			/>
+		</div>
+		<div>
+			<Label for="amount">Dollar Amount*</Label>
+			<Input type="text" name="amount" id="amount" placeholder="1.00" required />
+		</div>
+		<div>
+			<Label for="total">Number of Transactions*</Label>
+			<Input type="number" name="total" id="total" placeholder="1" required />
+		</div>
+		<div>
+			<Label for="reference">Reference*</Label>
+			<Input type="text" name="reference" id="reference" placeholder="Test" required />
+		</div>
+	</div>
+	<div class="flex justify-end mt-10">
+		<Button type="submit" color="blue">Submit</Button>
+	</div>
+</form>
 {#if form?.success}
 	<Modal open size="xl" outsideclose>
 		<div>
