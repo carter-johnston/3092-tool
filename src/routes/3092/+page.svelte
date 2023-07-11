@@ -8,6 +8,8 @@
 	let isCopied = false;
 	let notCopied = false;
 	let searchTerm = '';
+    let grouping: { [key: string]: any[] };
+
 
 	async function copyToClipboard(i: number) {
 		const text = document.getElementById(`ctos${i}`)!.innerText;
@@ -29,7 +31,9 @@
 		);
 	}
 
-	function exportToExcel(grouping) {
+	function exportToExcel(grouping: string[][]) {
+
+        
 		// dataset is an aoa getting passed into our sheetjs method
 		const dataset = [];
 
@@ -44,7 +48,7 @@
 		generateExcelSheet(dataset);
 	}
 
-	function generateExcelSheet(dataset) {
+	function generateExcelSheet(dataset: string[][]) {
 		// create a worksheet
 		let ws = XLSX.utils.aoa_to_sheet(dataset);
 
@@ -57,7 +61,6 @@
 		XLSX.writeFileXLSX(wb, `${DateTime.now().toFormat('yyyy_LLL_dd')}.xlsx`);
 	}
 
-	let grouping: { [key: string]: any[] };
 	if (data) {
 		grouping = data.cto3092Grouped;
 	}

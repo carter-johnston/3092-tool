@@ -4,7 +4,6 @@ import type { PageServerLoad, Actions } from './$types';
 
 export const load: PageServerLoad = async ({ locals, event }) => {
 	const { user } = await locals.auth.validateUser();
-	console.log(user);
 
 	if (user?.role != 'Admin' && event?.url.pathname === '/register') {
 		throw redirect(302, '/');

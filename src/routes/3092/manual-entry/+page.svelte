@@ -1,6 +1,8 @@
 <script lang="ts">
 	import type { ActionData } from './$types';
 	import { Hr, P, Button, Modal, Alert } from 'flowbite-svelte';
+    import XLSX from 'xlsx';
+    import { DateTime } from 'luxon';
 	import ManualEntryForm from './ManualEntryForm.svelte';
 
 	export let form: ActionData;
@@ -18,6 +20,35 @@
 			notCopied = true;
 			console.error('e', e);
 		}
+	}
+
+    function exportToExcel(grouping: string[] | undefined) {
+        if(!grouping) {
+            grouping = [];
+        }
+        // this is just like the other export function except the cto string needs to be parsed.
+        const mappedGroup = grouping.map(cto => cto.split(","));
+
+		const dataset = [];
+		dataset.push(Object.keys(mappedGroup[0]));
+		mappedGroup.forEach((g) => {
+			dataset.push(Object.values(g));
+		});
+
+		generateExcelSheet(dataset);
+	}
+
+	function generateExcelSheet(dataset: string[][]) {
+		// create a worksheet
+		let ws = XLSX.utils.aoa_to_sheet(dataset);
+
+		// multiple sheets can make a workbook
+		let wb = XLSX.utils.book_new();
+		XLSX.utils.book_append_sheet(wb, ws, `sheet_1`);
+
+		// write file to browser. this is what initiates the download.
+		// second param is the filename
+		XLSX.writeFileXLSX(wb, `${DateTime.now().toFormat('yyyy_LLL_dd')}.xlsx`);
 	}
 </script>
 
@@ -86,6 +117,7 @@
 		</div>
 		<svelte:fragment slot="footer">
 			<Button id="copyBtn" on:click={copyToClipboard}>Copy to Clipboard</Button>
+			<Button id="copyBtn" on:click={() => {exportToExcel(form?.ctoData)}}>Export to Excel</Button>
 		</svelte:fragment>
 	</Modal>
 {/if}

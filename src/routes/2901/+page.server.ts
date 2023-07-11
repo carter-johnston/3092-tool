@@ -39,8 +39,6 @@ export const actions: Actions = {
 			}
 		}
 
-		console.log(cto);
-
 		return {
 			success: true,
 			ctoData: cto
