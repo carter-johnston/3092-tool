@@ -37,16 +37,12 @@
 			for (let i = 0; i < dataString.data.length; i++) {
 				cardIds.push(dataString.data[i].cardid);
 			}
-			console.log(dataString);
-			console.log(cardIds);
 		}
 
 		cardIds = cardIds;
 
 		return cardIds;
 	}
-
-	$: console.log(cardIds);
 </script>
 
 <h1 class="text-3xl text-center mt-2 mb-2 text-gray-700 dark:text-gray-400">CTO Parser</h1>

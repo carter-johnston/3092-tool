@@ -167,32 +167,28 @@ export const actions: Actions = {
 		}
 
 		for (let i = 0; i < data.certCardIds.length; i++) {
-			try {
-				await prisma.cto3092.create({
-					data: {
-						groupingName: data.name,
-						certCardId: data.certCardIds[i],
-						certPin: data.certPins[i],
-						lastName: data.lastNames[i],
-						firstName: data.firstNames[i],
-						addressLine1: data.addressLine1[i],
-						addressLine2: data.addressLine2[i],
-						addressLine3: data.addressLine3[i],
-						country: data.countries[i],
-						dob: data.dobs[i],
-						homePhone: data.homePhones[i],
-						officePhone: data.officePhones[i],
-						mobilePhone: data.mobilePhones[i],
-						ssn: data.ssns[i],
-						email: data.emails[i],
-						city: data.cities[i],
-						state: data.states[i],
-						zip: data.zipcodes[i]
-					}
-				});
-			} catch (e) {
-				console.log(e);
-			}
+            await prisma.cto3092.create({
+                data: {
+                    groupingName: data.name,
+                    certCardId: data.certCardIds[i],
+                    certPin: data.certPins[i],
+                    lastName: data.lastNames[i],
+                    firstName: data.firstNames[i],
+                    addressLine1: data.addressLine1[i],
+                    addressLine2: data.addressLine2[i],
+                    addressLine3: data.addressLine3[i],
+                    country: data.countries[i],
+                    dob: data.dobs[i],
+                    homePhone: data.homePhones[i],
+                    officePhone: data.officePhones[i],
+                    mobilePhone: data.mobilePhones[i],
+                    ssn: data.ssns[i],
+                    email: data.emails[i],
+                    city: data.cities[i],
+                    state: data.states[i],
+                    zip: data.zipcodes[i]
+                }
+            });
 		}
 
 		return {

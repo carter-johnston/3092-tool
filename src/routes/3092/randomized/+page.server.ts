@@ -2338,8 +2338,6 @@ export const actions: Actions = {
 			}
 		}
 
-		console.log(randomList);
-
 		function generateRandomDOB() {
 			const startDate = new Date('1950-01-01');
 			const endDate = new Date('2001-12-31');
