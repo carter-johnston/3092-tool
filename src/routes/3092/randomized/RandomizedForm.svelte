@@ -1,5 +1,7 @@
 <script lang="ts">
-	import { Label, Input, Button, Hr, P, Radio } from 'flowbite-svelte';
+	import { Label, Input, Button, Hr, P, Checkbox } from 'flowbite-svelte';
+
+	export let employeeID = false;
 </script>
 
 <form method="POST">
@@ -20,6 +22,9 @@
 			<Label for="cardNumber" class="mb-2">Number of Cards to Generate*</Label>
 			<span />
 			<Input type="number" name="cardNumber" id="cardNumber" min="1" max="100" required />
+		</div>
+		<div>
+			<Checkbox name="employeeID" bind:checked={employeeID}>Add Employee ID?</Checkbox>
 		</div>
 	</div>
 	<div class="flex justify-end mt-10">

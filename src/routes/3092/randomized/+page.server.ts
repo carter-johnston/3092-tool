@@ -2192,6 +2192,7 @@ type Data = {
 	certPin: string[];
 	email: string[];
 	numCards: number;
+	employeeID?: string[];
 	// firstName: string[];
 	// lastName: string[];
 	// address1: string[];
@@ -2237,11 +2238,19 @@ export const actions: Actions = {
 			const state = states[Math.floor(Math.random() * states.length)];
 			const country = countries[Math.floor(Math.random() * countries.length)];
 			const postalCode = postalCodes[Math.floor(Math.random() * postalCodes.length)];
+			let employeeID = formData.get('employeeID');
+			let chIdType;
 			const dob = generateRandomDOB();
 			const ssn = generateRandomSSN();
 			const homePhone = randomPhoneNumber();
 			const officePhone = randomPhoneNumber();
 			const mobilePhone = randomPhoneNumber();
+
+			if (employeeID) {
+				employeeID = randomEmployeeID();
+				chIdType = 'Employee ID';
+			}
+
 			for (let i = 0; i < data.certCardID.length; i++) {
 				randomList.push(
 					[
@@ -2323,8 +2332,8 @@ export const actions: Actions = {
 						'',
 						'',
 						'',
-						'',
-						'',
+						chIdType,
+						employeeID,
 						'',
 						'',
 						'Y',
@@ -2358,6 +2367,19 @@ export const actions: Actions = {
 			const randomPhone = Math.floor(Math.random() * 9000000000) + 1000000000;
 
 			return randomPhone;
+		}
+
+		function randomEmployeeID() {
+			let employeeID = '';
+			const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+			const charLength = characters.length;
+			const length = 30;
+
+			for (let i = 0; i < length; i++) {
+				employeeID += characters.charAt(Math.floor(Math.random() * charLength));
+			}
+
+			return employeeID;
 		}
 
 		return {
