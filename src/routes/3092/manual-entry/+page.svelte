@@ -1,8 +1,8 @@
 <script lang="ts">
 	import type { ActionData } from './$types';
 	import { Hr, P, Button, Modal, Alert } from 'flowbite-svelte';
-    import XLSX from 'xlsx';
-    import { DateTime } from 'luxon';
+	import XLSX from 'xlsx';
+	import { DateTime } from 'luxon';
 	import ManualEntryForm from './ManualEntryForm.svelte';
 
 	export let form: ActionData;
@@ -22,14 +22,15 @@
 		}
 	}
 
-    function exportToExcel(grouping: string[] | undefined) {
-        if(!grouping) {
-            grouping = [];
-        }
-        // this is just like the other export function except the cto string needs to be parsed.
-        const mappedGroup = grouping.map(cto => cto.split(","));
+	function exportToExcel(grouping: string[] | undefined) {
+		if (!grouping) {
+			grouping = [];
+		}
+		// this is just like the other export function except the cto string needs to be parsed.
+		const mappedGroup = grouping.map((cto) => cto.split(','));
 
 		const dataset = [];
+		dataset.push(Object.keys(grouping[0]));
 		dataset.push(Object.keys(mappedGroup[0]));
 		mappedGroup.forEach((g) => {
 			dataset.push(Object.values(g));
@@ -117,7 +118,14 @@
 		</div>
 		<svelte:fragment slot="footer">
 			<Button id="copyBtn" on:click={copyToClipboard}>Copy to Clipboard</Button>
-			<Button id="copyBtn" on:click={() => {exportToExcel(form?.ctoData)}}>Export to Excel</Button>
+			<Button
+				id="copyBtn"
+				color="alternative"
+				disabled
+				on:click={() => {
+					exportToExcel(form?.ctoData);
+				}}>Export to Excel</Button
+			>
 		</svelte:fragment>
 	</Modal>
 {/if}
